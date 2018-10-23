@@ -19,14 +19,14 @@ tags:
 为了使travis能够将编译好的文件们push回github，我们需要生成token，步骤如下：
 1) 点击github右上方头像，然后点setting，或者https://github.com/settings/profile
 ![](https://raw.githubusercontent.com/victoryofymk/victoryofymk.github.io/images/20181023150449.png)
-2) 点击Developer settings/Personal access tokens
-![IMAGE](quiver-image-url/E6467428676B74D1F7275B97C2160454.jpg =1032x526)
-3) 点击Generate new token,为token起一个名字，勾选repo，然后点击生成,生成token以后，一定要复制好，因为只显示一次，如果丢失只能再次生成
+2) 点击Developer settings
+![](https://raw.githubusercontent.com/victoryofymk/victoryofymk.github.io/images/20181023154052.png)
+3) 进入Personal access tokens，点击Generate new token,为token起一个名字，勾选repo，然后点击生成,生成token以后，一定要复制好，因为只显示一次，如果丢失只能再次生成
 ![](https://raw.githubusercontent.com/victoryofymk/victoryofymk.github.io/images/20181023150618.png)
 
 ### Travis
 1) 使用github帐号登录Travis，右上方按钮点击同步项目，下方打开需要集成的项目，最后点击齿轮进入项目配置页面
-![IMAGE](quiver-image-url/3CB01036301FEAEA29EA1DC437433B94.jpg =730x602)
+![](https://raw.githubusercontent.com/victoryofymk/victoryofymk.github.io/images/20181023154227.png)
 2) 勾选相应配置，然后往下移动页面到环境变量
 ![](https://raw.githubusercontent.com/victoryofymk/victoryofymk.github.io/images/20181023150236.png)
 3) 在这里我将变量名称名为REPO_TOKEN，放上token，点击Add按钮
