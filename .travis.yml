@@ -22,6 +22,9 @@ before_install:
 - export PATH=$HOME/.yarn/bin:$PATH
 # npm模块安装
 - npm install -g hexo-cli
+# next主题依赖下载
+- git clone https://github.com/theme-next/theme-next-three themes/next/source/lib/three
+- git clone https://github.com/theme-next/theme-next-canvas-nest themes/next/source/lib/canvas-nest
 install:
 # 不用yarn的话这里改成 npm i 即可
 - yarn
