@@ -85,7 +85,7 @@ search:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
 - type: git
-  repository: https://github.com/victoryofymk/victoryofymk.github.io.git
+  repository: https://REPO_TOKEN@github.com/victoryofymk/victoryofymk.github.io
   branch: master
 # other deployer
 - type: leancloud_counter_security_sync

@@ -23,6 +23,7 @@ before_install:
 # npm模块安装
 - npm install -g hexo-cli
 # 替换变量
+- sed -i "s/$REPO_TOKEN/${$REPO_TOKEN}/" _config.yml
 - sed -i "s/leancloud_app_id/${leancloud_app_id}/" _config.yml
 - sed -i "s/leancloud_app_key/${leancloud_app_key}/" _config.yml
 - sed -i "s/leancloud_username/${leancloud_username}/" _config.yml
@@ -36,13 +37,15 @@ install:
 # 不用yarn的话这里改成 npm i 即可
 - yarn
 script:
+#- hexo lc-counter register $leancloud_username $leancloud_password
 - hexo clean
 - hexo generate
-after_success:
-- cd ./public
-- git init
-- git add --all .
-- git commit -m "Travis CI Auto Builder"
-# 这里的 REPO_TOKEN 即之前在 travis 项目的环境变量里添加的
-- git push --quiet --force https://$REPO_TOKEN@github.com/victoryofymk/victoryofymk.github.io
-  master
+- hexo d
+#after_success:
+#- cd ./public
+#- git init
+#- git add --all .
+#- git commit -m "Travis CI Auto Builder"
+## 这里的 REPO_TOKEN 即之前在 travis 项目的环境变量里添加的
+#- git push --quiet --force https://$REPO_TOKEN@github.com/victoryofymk/victoryofymk.github.io
+#  master
