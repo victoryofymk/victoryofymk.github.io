@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://victoryofymk.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -87,3 +87,52 @@ deploy:
   type: git
   repository: https://github.com/victoryofymk/victoryofymk.github.io.git
   branch: master
+
+# sitemap
+sitemap: 
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
+
+# RSS订阅支持
+plugin:
+- hexo-generator-feed
+
+# Feed Atom
+feed:
+type: atom
+path: atom.xml
+limit: 20
+
+# hexo-symbols-count-time
+symbols_count_time:
+  symbols: true # 文章字数
+  time: true # 文章阅读时间
+  total_symbols: true # 站点总字数
+  total_time: false # 站点总阅读时间
+
+# live2d
+live2d:
+enable: true
+scriptFrom: local
+pluginRootPath: live2dw/
+pluginJsPath: lib/
+pluginModelPath: assets/
+tagMode: false
+debug: false
+model:
+  use: live2d-widget-model-wanko
+display:
+  position: right
+  width: 150
+  height: 300
+mobile:
+  show: true
+
+# leancloud_counter_security
+leancloud_counter_security:
+  enable_sync: true
+  app_id: vspD7JFRjoCH2TYrY55X1vYM-gzGzoHsz #<app_id>
+  app_key: JjNudYIrmCTTuffdqx9v8I0H #<app_key>
+  username: # Will be asked while deploying if is left blank
+  password: # Recommmended to be left blank. Will be asked while deploying if is left blank

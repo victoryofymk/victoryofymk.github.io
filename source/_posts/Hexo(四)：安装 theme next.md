@@ -12,7 +12,7 @@ tags:
 
 终端cd到 blog 目录下执行如下命令：
 ```
-$ git clone https://github.com/iissnan/hexo-theme-next themes/next
+$ git clone https://github.com/theme-next/hexo-theme-next themes/next
 ```
 将blog目录下_config.yml里theme的名称landscape修改为next
 终端cd到blog目录下执行如下命令(每次部署文章的步骤)：

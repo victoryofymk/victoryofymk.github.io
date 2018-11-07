@@ -319,7 +319,7 @@ codeblock:
 # Related popular posts
 # Dependencies: https://github.com/tea3/hexo-related-popular-posts
 related_posts:
-  enable: false
+  enable: true
   title: # custom header, leave empty to use the default one
   display_in_home: false
   params:
@@ -631,14 +631,14 @@ rating:
 # Show number of visitors to each article.
 # You can visit https://leancloud.cn get AppID and AppKey.
 leancloud_visitors:
-  enable: false
-  app_id: #<app_id>
-  app_key: #<app_key>
+  enable: true
+  app_id: vspD7JFRjoCH2TYrY55X1vYM-gzGzoHsz #<app_id>
+  app_key: JjNudYIrmCTTuffdqx9v8I0H #<app_key>
   # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
   # If you don't care about security in lc counter and just want to use it directly
   # (without hexo-leancloud-counter-security plugin), set the `security` to `false`.
   security: true
-  betterPerformance: false
+  betterPerformance: true
 
 # Another tool to show number of visitors to each article.
 # visit https://console.firebase.google.com/u/0/ to get apiKey and projectId
@@ -827,12 +827,12 @@ pace_theme: pace-theme-minimal
 
 # Canvas-nest
 # Dependencies: https://github.com/theme-next/theme-next-canvas-nest
-canvas_nest: false
+canvas_nest: true
 
 # JavaScript 3D library.
 # Dependencies: https://github.com/theme-next/theme-next-three
 # three_waves
-three_waves: false
+three_waves: true
 # canvas_lines
 canvas_lines: false
 # canvas_sphere
