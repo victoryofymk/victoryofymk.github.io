@@ -15,6 +15,7 @@ cache:
   - theme
 # tarvis生命周期执行顺序详见官网文档
 before_install:
+- export TZ='Asia/Shanghai' # 更改时区
 - git config --global user.name "victoryofymk"
 - git config --global user.email "starlord.yan@gmail.com"
 # 由于使用了yarn，所以需要下载，如不用yarn这两行可以删除
