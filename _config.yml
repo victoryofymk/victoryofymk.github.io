@@ -133,6 +133,6 @@ mobile:
 leancloud_counter_security:
   enable_sync: true
   app_id: vspD7JFRjoCH2TYrY55X1vYM-gzGzoHsz #<app_id>
-  app_key: JjNudYIrmCTTuffdqx9v8I0H #<app_key>
+  app_key: QfFBSnzthsnAhekmGoXJcJR7 #<app_key>
   username: # Will be asked while deploying if is left blank
   password: # Recommmended to be left blank. Will be asked while deploying if is left blank
