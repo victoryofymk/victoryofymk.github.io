@@ -134,7 +134,7 @@ mobile:
 # leancloud_counter_security
 leancloud_counter_security:
   enable_sync: true
-  app_id: vspD7JFRjoCH2TYrY55X1vYM-gzGzoHsz
-  app_key: QfFBSnzthsnAhekmGoXJcJR7
-  username: admin
-  password: 050819
+  app_id: leancloud_app_id
+  app_key: leancloud_app_key
+  username: leancloud_username
+  password: leancloud_password
