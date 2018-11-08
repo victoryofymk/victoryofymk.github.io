@@ -31,6 +31,8 @@ before_install:
 - sed -i "s/leancloud_password/${leancloud_password}/" _config.yml
 - sed -i "s/leancloud_app_id/${leancloud_app_id/}/" themes/next/_config.yml
 - sed -i "s/leancloud_app_key/${leancloud_app_key}/" themes/next/_config.yml
+- sed -i "s/blog_issue_client_id/${blog_issue_client_id}/" themes/next/_config.yml
+- sed -i "s/blog_issue_client_secret/${blog_issue_client_secret}/" themes/next/_config.yml
 # next主题依赖下载
 - git clone https://github.com/theme-next/theme-next-three themes/next/source/lib/three
 - git clone https://github.com/theme-next/theme-next-canvas-nest themes/next/source/lib/canvas-nest
