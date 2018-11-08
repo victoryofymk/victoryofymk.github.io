@@ -2,6 +2,7 @@
 title: nginx功能介绍(二)
 date: 2017-09-19 16:12:26
 categories: "nginx教程" #文章分類目錄 可以省略
+comments: true
 tags: 
     - nginx #文章標籤 可以省略
     - 代理 

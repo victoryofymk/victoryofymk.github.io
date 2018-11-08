@@ -2,6 +2,7 @@
 title: Hexo(二)：关联 github
 date: 2018-10-23 16:12:48
 categories: "hexo" #文章分類目錄 可以省略
+comments: true
 tags:
 - hexo #文章標籤 可以省略
 - blog

@@ -1,6 +1,7 @@
 ---
 title: nginx简介(一)
 categories: "nginx教程" #文章分類目錄 可以省略
+comments: true
 tags: 
     - nginx #文章標籤 可以省略
     - 代理 
