@@ -42,3 +42,9 @@ error nunjucks@3.1.3: The engine "node" is incompatible with this module. Expect
 node_js: "7"
 ```
 
+### gitalk授权问题
+
+使用github issue实现hexo评论功能，登陆时无法跳转到有效链接
+
+解决办法：检查MD文件名称中是否有中文字符，例如：中文冒号：，如果有去掉即可，因为跳转时会转换成英文字符，所以路径就找不到，空格也可能有问题
+
