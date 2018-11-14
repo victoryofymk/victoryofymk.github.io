@@ -481,9 +481,9 @@ pangu: false
 # Disqus
 disqus:
   enable: false
-  shortname:
+  shortname: wyattyan
   count: true
-  lazyload: false
+  lazyload: true
 
 # changyan
 changyan:
@@ -497,8 +497,8 @@ changyan:
 # more info please open https://valine.js.org
 valine:
   enable: false # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.
-  appid:  # your leancloud application appid
-  appkey:  # your leancloud application appkey
+  appid:  leancloud_app_id # your leancloud application appid
+  appkey: leancloud_app_key # your leancloud application appkey
   notify: false # mail notifier , https://github.com/xCss/Valine/wiki
   verify: false # Verification code
   placeholder: Just go go # comment box placeholder
@@ -517,13 +517,13 @@ gitment:
   enable: false
   mint: true # RECOMMEND, A mint on Gitment, to support count, language and proxy_gateway
   count: true # Show comments count in post meta area
-  lazy: false # Comments lazy loading with a button
+  lazy: true # Comments lazy loading with a button
   cleanly: false # Hide 'Powered by ...' on footer, and more
   language: # Force language, or auto switch by theme
-  github_user: # MUST HAVE, Your Github Username
-  github_repo: # MUST HAVE, The name of the repo you use to store Gitment comments
-  client_id: # MUST HAVE, Github client id for the Gitment
-  client_secret: # EITHER this or proxy_gateway, Github access secret token for the Gitment
+  github_user: victoryofymk # MUST HAVE, Your Github Username
+  github_repo: victoryofymk.github.io # MUST HAVE, The name of the repo you use to store Gitment comments
+  client_id: blog_issue_client_id # MUST HAVE, Github client id for the Gitment
+  client_secret: blog_issue_client_secret # EITHER this or proxy_gateway, Github access secret token for the Gitment
   proxy_gateway: # Address of api proxy, See: https://github.com/aimingoo/intersect
   redirect_protocol: # Protocol of redirect_uri with force_redirect_protocol when mint enabled
 
