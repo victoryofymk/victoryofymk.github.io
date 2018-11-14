@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="简介记录一下JDK版本的历史更新和重要特性。 目前JDK更新较快，每半年发布一个版本，但是对于生产环境采用仍然建议使用LTS(长期支持版本)版本 按照 Oracle 公布的支持路线图，Java 11 将会获得 Oracle 提供的长期支持服务，直至2026年9月。 根据官网从Java 11开始提供用开源许可证和商业许可证的组合 更新记录 2018-11-09 补充JDK8的介绍和使用  一些术语">
+<meta name="keywords" content="JDK,Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JDK版本变化">
+<meta property="og:url" content="https://victoryofymk.github.io/2018/10/23/JDK版本变化/index.html">
+<meta property="og:site_name" content="执行者的博客">
+<meta property="og:description" content="简介记录一下JDK版本的历史更新和重要特性。 目前JDK更新较快，每半年发布一个版本，但是对于生产环境采用仍然建议使用LTS(长期支持版本)版本 按照 Oracle 公布的支持路线图，Java 11 将会获得 Oracle 提供的长期支持服务，直至2026年9月。 根据官网从Java 11开始提供用开源许可证和商业许可证的组合 更新记录 2018-11-09 补充JDK8的介绍和使用  一些术语">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/victoryofymk/victoryofymk.github.io/images/JDK%20%E7%89%88%E6%9C%AC%E5%8F%98%E5%8C%96-1.png">
+<meta property="og:updated_time" content="2018-11-14T06:37:06.755Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JDK版本变化">
+<meta name="twitter:description" content="简介记录一下JDK版本的历史更新和重要特性。 目前JDK更新较快，每半年发布一个版本，但是对于生产环境采用仍然建议使用LTS(长期支持版本)版本 按照 Oracle 公布的支持路线图，Java 11 将会获得 Oracle 提供的长期支持服务，直至2026年9月。 根据官网从Java 11开始提供用开源许可证和商业许可证的组合 更新记录 2018-11-09 补充JDK8的介绍和使用  一些术语">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/victoryofymk/victoryofymk.github.io/images/JDK%20%E7%89%88%E6%9C%AC%E5%8F%98%E5%8C%96-1.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="执行者的博客" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://victoryofymk.github.io/2018/10/23/JDK版本变化/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>JDK版本变化 | 执行者的博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/victoryofymk" class="" target="_blank" title="我的Github" aria-label="我的Github"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg>
+    </a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">执行者的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">云淡风轻</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://victoryofymk.github.io/2018/10/23/JDK版本变化/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="执行者">
+      <meta itemprop="description" content="活出自我">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/10276571?v=4&u=7451747ef9367ae19748898baa555d3af216e3e4&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="执行者的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JDK版本变化
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-23 16:12:48" itemprop="dateCreated datePublished" datetime="2018-10-23T16:12:48+08:00">2018-10-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-14 14:37:06" itemprop="dateModified" datetime="2018-11-14T14:37:06+08:00">2018-11-14</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JDK/" itemprop="url" rel="index"><span itemprop="name">JDK</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/10/23/JDK版本变化/" class="leancloud_visitors" data-flag-title="JDK版本变化">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">18k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">16 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>记录一下JDK版本的历史更新和重要特性。</p>
+<p>目前JDK更新较快，每半年发布一个版本，但是对于生产环境采用仍然建议使用LTS(长期支持版本)版本</p>
+<p>按照 Oracle 公布的支持路线图，Java 11 将会获得 Oracle 提供的长期支持服务，直至2026年9月。<br><img src="https://raw.githubusercontent.com/victoryofymk/victoryofymk.github.io/images/JDK%20%E7%89%88%E6%9C%AC%E5%8F%98%E5%8C%96-1.png" alt=""></p>
+<p>根据官网从Java 11开始提供用开源许可证和商业许可证的组合</p>
+<h3 id="更新记录"><a href="#更新记录" class="headerlink" title="更新记录"></a>更新记录</h3><ul>
+<li>2018-11-09 补充JDK8的介绍和使用</li>
+</ul>
+<h2 id="一些术语"><a href="#一些术语" class="headerlink" title="一些术语"></a>一些术语</h2><ul>
+<li>JCP 是 Java Community Process（Java社区进程）的简称，社会各界Java组成的社区，规划和领导Java的发展。</li>
+<li>JEP 是 JDK Enhancement Proposals （Java 增强提案）的简称，JDK的版本变化将从这些提案中选取。</li>
+<li>JSR 是 Java Specification Requests（Java规范请求）的简称，是 JCP 成员向委员会提交的 Java 发展议案，经过一系列流程后，如果通过会成为 JEP，最终会体现在未来的Java中。</li>
+<li>TCK 是 Technology Compatibility Kit（技术兼容性测试）的简称， 如果一个平台型程序想要宣称自己兼容Java，就必须通过TCK测试</li>
+</ul>
+<h2 id="JDK6"><a href="#JDK6" class="headerlink" title="JDK6"></a>JDK6</h2><ul>
+<li>集合框架增强。</li>
+</ul>
+<ol>
+<li>为了更好的支持双向访问集合。添加了许多新的类和接口。</li>
+<li>新的数组拷贝方法。Arrays.copyOf和Arrays.copyOfRange</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//以下为添加的新接口和类</span><br><span class="line">Deque,BlockingDeque,NavigableSet,NavigableMap,ConcurrentNavigableMap，ArrayDeque， ConcurrentSkipListSet ,ConcurrentSkipListMap,ConcurrentSkipListMap ,AbstractMap.SimpleEntry ,AbstractMap.SimpleImmutableEntry</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Scripting. 可以让其他语言在java平台上运行。 java6包含了一个基于Mozilla Rhino实现的javascript脚本引擎。</li>
+<li>支持JDBC4.0规范。</li>
+</ul>
+<h2 id="JDK7"><a href="#JDK7" class="headerlink" title="JDK7"></a>JDK7</h2><ul>
+<li>二进制前缀0b或者0B。整型（byte, short, int, long）可以直接用二进制表示。</li>
+<li>字面常量数字的下划线。用下划线连接整数提升其可读性，自身无含义，不可用在数字的起始和末尾。</li>
+<li>switch 支持String类型。</li>
+<li>泛型实例化类型自动推断。</li>
+<li>try-with-resources语句。</li>
+<li>单个catch中捕获多个异常类型（用| 分割）并通过改进的类型检查重新抛出异常。</li>
+</ul>
+<h2 id="JDK8"><a href="#JDK8" class="headerlink" title="JDK8"></a>JDK8</h2><ul>
+<li>Lambda 表达式(Lambda Expressions) − Lambda允许把函数作为一个方法的参数（函数作为参数传递进方法中。</li>
+<li>方法引用（Method references） − 方法引用提供了非常有用的语法，可以直接引用已有Java类或对象（实例）的方法或构造器。与lambda联合使用，方法引用可以使语言的构造更紧凑简洁，减少冗余代码。</li>
+<li>默认方法 （Default methods）− 默认方法就是一个在接口里面有了一个实现的方法。</li>
+<li>新工具 − 新的编译工具，如：Nashorn引擎 jjs、 类依赖分析器jdeps。</li>
+<li>Stream API −新添加的Stream API（java.util.stream） 把真正的函数式编程风格引入到Java中。</li>
+<li>Date Time API − 加强对日期与时间的处理。</li>
+<li>Optional 类 − Optional 类已经成为 Java 8 类库的一部分，用来解决空指针异常。</li>
+<li>Nashorn, JavaScript 引擎 − Java 8提供了一个新的Nashorn javascript引擎，它允许我们在JVM上运行特定的javascript应用。</li>
+<li><p>java.util 包下的改进，提供了几个实用的工具类。<br>并行数组排序。<br>标准的Base64编解码。<br>支持无符号运算。</p>
+</li>
+<li><p>java.util.concurrent 包下增加了新的类和方法。<br>java.util.concurrent.ConcurrentHashMap 类添加了新的方法以支持新的StreamApi和lambada表达式。<br>java.util.concurrent.atomic 包下新增了类以支持可伸缩可更新的变量。<br>java.util.concurrent.ForkJoinPool类新增了方法以支持 common pool。<br>新增了java.util.concurrent.locks.StampedLock类，为控制读/写访问提供了一个基于性能的锁，且有三种模式可供选择。</p>
+</li>
+<li><p>HotSpot<br>删除了 永久代（PermGen）.<br>方法调用的字节码指令支持默认方法。</p>
+</li>
+<li><p>重复注解（Repeating Annotations）。重复注解提供了在同一声明或类型中多次应用相同注解类型的能力。</p>
+</li>
+<li>类型注解（Type Annotation）。在任何地方都能使用注解，而不是在声明的地方。</li>
+<li>类型推断增强</li>
+<li>方法参数反射（Method Parameter Reflection）。</li>
+<li>HashMap改进，在键值哈希冲突时能有更好表现。</li>
+</ul>
+<p>部分特性说明：</p>
+<h3 id="1-Lambda-表达式"><a href="#1-Lambda-表达式" class="headerlink" title="1.Lambda 表达式"></a>1.Lambda 表达式</h3><p>Lambda 表达式，也可称为闭包，允许把函数作为一个方法的参数</p>
+<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><p>lambda 表达式的语法格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(parameters) -&gt; expression</span><br><span class="line">或</span><br><span class="line">(parameters) -&gt;&#123; statements; &#125;</span><br></pre></td></tr></table></figure></p>
+<p>以下是lambda表达式的重要特征:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">可选类型声明：不需要声明参数类型，编译器可以统一识别参数值。</span><br><span class="line">可选的参数圆括号：一个参数无需定义圆括号，但多个参数需要定义圆括号。</span><br><span class="line">可选的大括号：如果主体包含了一个语句，就不需要使用大括号。</span><br><span class="line">可选的返回关键字：如果主体只有一个表达式返回值则编译器会自动返回值，大括号需要指定明表达式返回了一个数值。</span><br></pre></td></tr></table></figure>
+<p>Lambda 表达式实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 1. 不需要参数,返回值为 5  </span><br><span class="line">() -&gt; 5  </span><br><span class="line"># 2. 接收一个参数(数字类型),返回其2倍的值  </span><br><span class="line">x -&gt; 2 * x  </span><br><span class="line"># 3. 接受2个参数(数字),并返回他们的差值  </span><br><span class="line">(x, y) -&gt; x – y  </span><br><span class="line"># 4. 接收2个int型整数,返回他们的和  </span><br><span class="line">(int x, int y) -&gt; x + y  </span><br><span class="line"># 5. 接受一个 string 对象,并在控制台打印,不返回任何值(看起来像是返回void)  </span><br><span class="line">(String s) -&gt; System.out.print(s)</span><br></pre></td></tr></table></figure>
+<h3 id="2-方法引用"><a href="#2-方法引用" class="headerlink" title="2.方法引用"></a>2.方法引用</h3><p>方法引用通过方法的名字来指向一个方法,可以使语言的构造更紧凑简洁，减少冗余代码。方法引用使用一对冒号 ::</p>
+<h4 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h4><p>构造器引用：它的语法是Class::new，或者更一般的Class&lt; T &gt;::new实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">final Car car = Car.create( Car::new );</span><br><span class="line">final List&lt; Car &gt; cars = Arrays.asList( car );</span><br></pre></td></tr></table></figure></p>
+<p>静态方法引用：它的语法是Class::static_method，实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cars.forEach( Car::collide );</span><br></pre></td></tr></table></figure></p>
+<p>特定类的任意对象的方法引用：它的语法是Class::method实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cars.forEach( Car::repair );</span><br></pre></td></tr></table></figure></p>
+<p>特定对象的方法引用：它的语法是instance::method实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">final Car police = Car.create( Car::new );</span><br><span class="line">cars.forEach( police::follow );</span><br></pre></td></tr></table></figure></p>
+<p>方法引用实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class Java8Tester &#123;</span><br><span class="line">   public static void main(String args[])&#123;</span><br><span class="line">      List names = new ArrayList();</span><br><span class="line">        </span><br><span class="line">      names.add(&quot;Google&quot;);</span><br><span class="line">      names.add(&quot;Runoob&quot;);</span><br><span class="line">      names.add(&quot;Taobao&quot;);</span><br><span class="line">      names.add(&quot;Baidu&quot;);</span><br><span class="line">      names.add(&quot;Sina&quot;);</span><br><span class="line">        </span><br><span class="line">      names.forEach(System.out::println);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h3><p>函数式接口(Functional Interface)就是一个有且仅有一个抽象方法，但是可以有多个非抽象方法的接口。</p>
+<p>函数式接口可以被隐式转换为 lambda 表达式。</p>
+<p>如定义了一个函数式接口如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@FunctionalInterface</span><br><span class="line">interface GreetingService </span><br><span class="line">&#123;</span><br><span class="line">    void sayMessage(String message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>那么就可以使用Lambda表达式来表示该接口的一个实现(注：JAVA 8 之前一般是用匿名类实现的)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GreetingService greetService1 = message -&gt; System.out.println(&quot;Hello &quot; + message);</span><br></pre></td></tr></table></figure></p>
+<h3 id="默认方法"><a href="#默认方法" class="headerlink" title="默认方法"></a>默认方法</h3><p>Java 8 新增了接口的默认方法。<br>简单说，默认方法就是接口可以有实现方法，而且不需要实现类去实现其方法。<br>我们只需在方法名前面加个default关键字即可实现默认方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">为什么要有这个特性？</span><br><span class="line"></span><br><span class="line">首先，之前的接口是个双刃剑，好处是面向抽象而不是面向具体编程，缺陷是，当需要修改接口时候，需要修改全部实现该接口的类，目前的java 8之前的集合框架没有foreach方法，通常能想到的解决办法是在JDK里给相关的接口添加新的方法及实现。然而，对于已经发布的版本，是没法在给接口添加新方法的同时不影响已有的实现。所以引进的默认方法。他们的目的是为了解决接口的修改与现有的实现不兼容的问题。</span><br></pre></td></tr></table></figure>
+<h4 id="语法-2"><a href="#语法-2" class="headerlink" title="语法"></a>语法</h4><p>默认方法语法格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public interface Vehicle &#123;</span><br><span class="line">   default void print()&#123;</span><br><span class="line">      System.out.println(&quot;我是一辆车!&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>多个默认方法<br>一个接口有默认方法，考虑这样的情况，一个类实现了多个接口，且这些接口有相同的默认方法，以下实例说明了这种情况的解决方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public interface Vehicle &#123;</span><br><span class="line">   default void print()&#123;</span><br><span class="line">      System.out.println(&quot;我是一辆车!&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">public interface FourWheeler &#123;</span><br><span class="line">   default void print()&#123;</span><br><span class="line">      System.out.println(&quot;我是一辆四轮车!&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第一个解决方案是创建自己的默认方法，来覆盖重写接口的默认方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class Car implements Vehicle, FourWheeler &#123;</span><br><span class="line">   default void print()&#123;</span><br><span class="line">      System.out.println(&quot;我是一辆四轮汽车!&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第二种解决方案可以使用 super 来调用指定接口的默认方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class Car implements Vehicle, FourWheeler &#123;</span><br><span class="line">   public void print()&#123;</span><br><span class="line">      Vehicle.super.print();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>静态默认方法<br>Java 8 的另一个特性是接口可以声明（并且可以提供实现）静态方法。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public interface Vehicle &#123;</span><br><span class="line">   default void print()&#123;</span><br><span class="line">      System.out.println(&quot;我是一辆车!&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">    // 静态方法</span><br><span class="line">   static void blowHorn()&#123;</span><br><span class="line">      System.out.println(&quot;按喇叭!!!&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h3><p>Java 8 API添加了一个新的抽象称为流Stream，可以让你以一种声明的方式处理数据。</p>
+<p>Stream 使用一种类似用 SQL 语句从数据库查询数据的直观方式来提供一种对 Java 集合运算和表达的高阶抽象。</p>
+<p>Stream API可以极大提高Java程序员的生产力，让程序员写出高效率、干净、简洁的代码。</p>
+<p>这种风格将要处理的元素集合看作一种流， 流在管道中传输， 并且可以在管道的节点上进行处理， 比如筛选， 排序，聚合等。</p>
+<p>元素流在管道中经过中间操作（intermediate operation）的处理，最后由最终操作(terminal operation)得到前面处理的结果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">+--------------------+       +------+   +------+   +---+   +-------+</span><br><span class="line">| stream of elements +-----&gt; |filter+-&gt; |sorted+-&gt; |map+-&gt; |collect|</span><br><span class="line">+--------------------+       +------+   +------+   +---+   +-------+</span><br></pre></td></tr></table></figure>
+<p>以上的流程转换为 Java 代码为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; transactionsIds = </span><br><span class="line">widgets.stream()</span><br><span class="line">             .filter(b -&gt; b.getColor() == RED)</span><br><span class="line">             .sorted((x,y) -&gt; x.getWeight() - y.getWeight())</span><br><span class="line">             .mapToInt(Widget::getWeight)</span><br><span class="line">             .sum();</span><br></pre></td></tr></table></figure>
+<h4 id="什么是-Stream？"><a href="#什么是-Stream？" class="headerlink" title="什么是 Stream？"></a>什么是 Stream？</h4><p>Stream（流）是一个来自数据源的元素队列并支持聚合操作</p>
+<p>元素是特定类型的对象，形成一个队列。 Java中的Stream并不会存储元素，而是按需计算。<br>数据源 流的来源。 可以是集合，数组，I/O channel， 产生器generator 等。<br>聚合操作 类似SQL语句一样的操作， 比如filter, map, reduce, find, match, sorted等。<br>和以前的Collection操作不同， Stream操作还有两个基础的特征：</p>
+<p>Pipelining: 中间操作都会返回流对象本身。 这样多个操作可以串联成一个管道， 如同流式风格（fluent style）。 这样做可以对操作进行优化， 比如延迟执行(laziness)和短路( short-circuiting)。<br>内部迭代： 以前对集合遍历都是通过Iterator或者For-Each的方式, 显式的在集合外部进行迭代， 这叫做外部迭代。 Stream提供了内部迭代的方式， 通过访问者模式(Visitor)实现。</p>
+<h4 id="生成流"><a href="#生成流" class="headerlink" title="生成流"></a>生成流</h4><p>在 Java 8 中, 集合接口有两个方法来生成流：</p>
+<p>stream() − 为集合创建串行流。</p>
+<p>parallelStream() − 为集合创建并行流。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; strings = Arrays.asList(&quot;abc&quot;, &quot;&quot;, &quot;bc&quot;, &quot;efg&quot;, &quot;abcd&quot;,&quot;&quot;, &quot;jkl&quot;);</span><br><span class="line">List&lt;String&gt; filtered = strings.stream().filter(string -&gt; !string.isEmpty()).collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+<h4 id="forEach"><a href="#forEach" class="headerlink" title="forEach"></a>forEach</h4><p>Stream 提供了新的方法 ‘forEach’ 来迭代流中的每个数据。以下代码片段使用 forEach 输出了10个随机数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Random random = new Random();</span><br><span class="line">random.ints().limit(10).forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+<h4 id="map"><a href="#map" class="headerlink" title="map"></a>map</h4><p>map 方法用于映射每个元素到对应的结果，以下代码片段使用 map 输出了元素对应的平方数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);</span><br><span class="line">// 获取对应的平方数</span><br><span class="line">List&lt;Integer&gt; squaresList = numbers.stream().map( i -&gt; i*i).distinct().collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+<h4 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h4><p>filter 方法用于通过设置的条件过滤出元素。以下代码片段使用 filter 方法过滤出空字符串：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt;strings = Arrays.asList(&quot;abc&quot;, &quot;&quot;, &quot;bc&quot;, &quot;efg&quot;, &quot;abcd&quot;,&quot;&quot;, &quot;jkl&quot;);</span><br><span class="line">// 获取空字符串的数量</span><br><span class="line">int count = strings.stream().filter(string -&gt; string.isEmpty()).count();</span><br></pre></td></tr></table></figure>
+<h4 id="limit"><a href="#limit" class="headerlink" title="limit"></a>limit</h4><p>limit 方法用于获取指定数量的流。 以下代码片段使用 limit 方法打印出 10 条数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Random random = new Random();</span><br><span class="line">random.ints().limit(10).forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+<h4 id="sorted"><a href="#sorted" class="headerlink" title="sorted"></a>sorted</h4><p>sorted 方法用于对流进行排序。以下代码片段使用 sorted 方法对输出的 10 个随机数进行排序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Random random = new Random();</span><br><span class="line">random.ints().limit(10).sorted().forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+<h4 id="并行（parallel）程序"><a href="#并行（parallel）程序" class="headerlink" title="并行（parallel）程序"></a>并行（parallel）程序</h4><p>parallelStream 是流并行处理程序的代替方法。以下实例我们使用 parallelStream 来输出空字符串的数量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; strings = Arrays.asList(&quot;abc&quot;, &quot;&quot;, &quot;bc&quot;, &quot;efg&quot;, &quot;abcd&quot;,&quot;&quot;, &quot;jkl&quot;);</span><br><span class="line">// 获取空字符串的数量</span><br><span class="line">int count = strings.parallelStream().filter(string -&gt; string.isEmpty()).count();</span><br></pre></td></tr></table></figure>
+<p>我们可以很容易的在顺序运行和并行直接切换。</p>
+<h4 id="Collectors"><a href="#Collectors" class="headerlink" title="Collectors"></a>Collectors</h4><p>Collectors 类实现了很多归约操作，例如将流转换成集合和聚合元素。Collectors 可用于返回列表或字符串：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt;strings = Arrays.asList(&quot;abc&quot;, &quot;&quot;, &quot;bc&quot;, &quot;efg&quot;, &quot;abcd&quot;,&quot;&quot;, &quot;jkl&quot;);</span><br><span class="line">List&lt;String&gt; filtered = strings.stream().filter(string -&gt; !string.isEmpty()).collect(Collectors.toList());</span><br><span class="line"> </span><br><span class="line">System.out.println(&quot;筛选列表: &quot; + filtered);</span><br><span class="line">String mergedString = strings.stream().filter(string -&gt; !string.isEmpty()).collect(Collectors.joining(&quot;, &quot;));</span><br><span class="line">System.out.println(&quot;合并字符串: &quot; + mergedString);</span><br></pre></td></tr></table></figure>
+<h4 id="统计"><a href="#统计" class="headerlink" title="统计"></a>统计</h4><p>另外，一些产生统计结果的收集器也非常有用。它们主要用于int、double、long等基本类型上，它们可以用来产生类似如下的统计结果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);</span><br><span class="line"> </span><br><span class="line">IntSummaryStatistics stats = numbers.stream().mapToInt((x) -&gt; x).summaryStatistics();</span><br><span class="line"> </span><br><span class="line">System.out.println(&quot;列表中最大的数 : &quot; + stats.getMax());</span><br><span class="line">System.out.println(&quot;列表中最小的数 : &quot; + stats.getMin());</span><br><span class="line">System.out.println(&quot;所有数之和 : &quot; + stats.getSum());</span><br><span class="line">System.out.println(&quot;平均数 : &quot; + stats.getAverage());</span><br></pre></td></tr></table></figure>
+<h3 id="Optional-类"><a href="#Optional-类" class="headerlink" title="Optional 类"></a>Optional 类</h3><p>Optional 类是一个可以为null的容器对象。如果值存在则isPresent()方法会返回true，调用get()方法会返回该对象。</p>
+<p>Optional 是个容器：它可以保存类型T的值，或者仅仅保存null。Optional提供很多有用的方法，这样我们就不用显式进行空值检测。</p>
+<p>Optional 类的引入很好的解决空指针异常。</p>
+<p>类声明<br>以下是一个 java.util.Optional<t> 类的声明：</t></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public final class Optional&lt;T&gt;</span><br><span class="line">extends Object</span><br></pre></td></tr></table></figure>
+<h3 id="Nashorn-JavaScript"><a href="#Nashorn-JavaScript" class="headerlink" title="Nashorn JavaScript"></a>Nashorn JavaScript</h3><p>Nashorn 一个 javascript 引擎。</p>
+<p>从JDK 1.8开始，Nashorn取代Rhino(JDK 1.6, JDK1.7)成为Java的嵌入式JavaScript引擎。Nashorn完全支持ECMAScript 5.1规范以及一些扩展。它使用基于JSR 292的新语言特性，其中包含在JDK 7中引入的 invokedynamic，将JavaScript编译成Java字节码。</p>
+<p>与先前的Rhino实现相比，这带来了2到10倍的性能提升。</p>
+<h3 id="日期时间-API"><a href="#日期时间-API" class="headerlink" title="日期时间 API"></a>日期时间 API</h3><p>ava 8通过发布新的Date-Time API (JSR 310)来进一步加强对日期与时间的处理。</p>
+<p>在旧版的 Java 中，日期时间 API 存在诸多问题，其中有：</p>
+<p>非线程安全 − java.util.Date 是非线程安全的，所有的日期类都是可变的，这是Java日期类最大的问题之一。</p>
+<p>设计很差 − Java的日期/时间类的定义并不一致，在java.util和java.sql的包中都有日期类，此外用于格式化和解析的类在java.text包中定义。java.util.Date同时包含日期和时间，而java.sql.Date仅包含日期，将其纳入java.sql包并不合理。另外这两个类都有相同的名字，这本身就是一个非常糟糕的设计。</p>
+<p>时区处理麻烦 − 日期类并不提供国际化，没有时区支持，因此Java引入了java.util.Calendar和java.util.TimeZone类，但他们同样存在上述所有的问题。</p>
+<p>Java 8 在 java.time 包下提供了很多新的 API。以下为两个比较重要的 API：</p>
+<p>Local(本地) − 简化了日期时间的处理，没有时区的问题。</p>
+<p>Zoned(时区) − 通过制定的时区处理日期时间。</p>
+<p>新的java.time包涵盖了所有处理日期，时间，日期/时间，时区，时刻（instants），过程（during）与时钟（clock）的操作。</p>
+<h3 id="Base64"><a href="#Base64" class="headerlink" title="Base64"></a>Base64</h3><p>在Java 8中，Base64编码已经成为Java类库的标准。</p>
+<p>Java 8 内置了 Base64 编码的编码器和解码器。</p>
+<p>Base64工具类提供了一套静态方法获取下面三种BASE64编解码器：</p>
+<p>基本：输出被映射到一组字符A-Za-z0-9+/，编码不添加任何行标，输出的解码仅支持A-Za-z0-9+/。<br>URL：输出映射到一组字符A-Za-z0-9+_，输出是URL和文件。<br>MIME：输出隐射到MIME友好格式。输出每行不超过76字符，并且使用’\r’并跟随’\n’作为分割。编码输出最后没有行分割。</p>
+<h2 id="JDK9"><a href="#JDK9" class="headerlink" title="JDK9"></a>JDK9</h2><p>JDK 9 于2017年9月21日发布</p>
+<p>新特性有：</p>
+<ul>
+<li>模块化 —— Jigsaw（Java Platform Module System）</li>
+<li>交互式命令行 —— JShell</li>
+<li>进程操作改进</li>
+<li>竞争锁的性能优化</li>
+<li>分段代码缓存</li>
+<li>优化字符串占用空间</li>
+<li>Javadoc<br>简化Doclet API。<br>支持生成HTML5格式。<br>加入了搜索框,使用这个搜索框可以查询程序元素、标记的单词和文档中的短语。<br>支持新的模块系统。</li>
+<li>JVM<br>增强了Garbage-First(G1)并用它替代Parallel GC成为默认的垃圾收集器。<br>统一了JVM 日志，为所有组件引入了同一个日志系统。<br>删除了JDK 8中弃用的GC组合。（DefNew + CMS，ParNew + SerialOld，Incremental CMS）。</li>
+<li>properties文件支持UTF-8编码,之前只支持ISO-8859-1。</li>
+<li>支持Unicode 8.0，在JDK8中是Unicode 6.2。</li>
+<li>支持私有接口方法(您可以使用diamond语法与匿名内部类结合使用)。</li>
+<li>下划线不能用在变量名中。</li>
+<li>diamond语法与匿名内部类结合使用。</li>
+<li>新的版本号格式。$MAJOR.$MINOR.$SECURITY.$PATCH</li>
+</ul>
+<h2 id="JDK10"><a href="#JDK10" class="headerlink" title="JDK10"></a>JDK10</h2><p>北京时间 3 月 21 日，Oracle 官方宣布 Java 10 正式发布。新特性有：</p>
+<ul>
+<li>JEP 286: 局部变量的类型推导。该特性在社区讨论了很久并做了调查，可查看 JEP 286 调查结果。</li>
+<li>JEP 296: 将 JDK 的多个代码仓库合并到一个储存库中。</li>
+<li>JEP 304: 垃圾收集器接口。通过引入一个干净的垃圾收集器（GC）接口，改善不同垃圾收集器的源码隔离性。</li>
+<li>JEP 307: 向 G1 引入并行 Full GC。</li>
+<li>JEP 310: 应用类数据共享。为改善启动和占用空间，在现有的类数据共享（“CDS”）功能上再次拓展，以允许应用类放置在共享存档中。</li>
+<li>JEP 312: 线程局部管控。允许停止单个线程，而不是只能启用或停止所有线程。</li>
+<li>JEP 313: 移除 Native-Header Generation Tool (javah)</li>
+<li>JEP 314: 额外的 Unicode 语言标签扩展。包括：cu (货币类型)、fw (每周第一天为星期几)、rg (区域覆盖)、tz (时区) 等。</li>
+<li>JEP 316: 在备用内存设备上分配堆内存。允许 HotSpot 虚拟机在备用内存设备上分配 Java 对象堆。</li>
+<li>JEP 317: 基于 Java 的 JIT 编译器（试验版本）。</li>
+<li>JEP 319: 根证书。开源 Java SE Root CA 程序中的根证书。</li>
+<li>JEP 322: 基于时间的版本发布模式。“Feature releases” 版本将包含新特性，“Update releases” 版本仅修复 Bug 。</li>
+</ul>
+<p>部分特性说明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br></pre></td><td class="code"><pre><span class="line">1. var 类型推断。</span><br><span class="line"></span><br><span class="line">这个语言功能在其他一些语言 (C#、JavaScript) 和基于 JRE 的一些语言 (Scala 和 Kotlin) 中，早已被加入。</span><br><span class="line"></span><br><span class="line">在 Java 语言很早就在考虑，早在 2016 年正式提交了 JEP286 提议。后来举行了一次公开的开发者调查，获得最多建议的是采用类似 Scala 的方案，“同时使用 val 和 var”，约占一半；第二多的是“只使用 var”，约占四分之一。后来 Oracle 公司经过慎重考虑，采用了只使用 var 关键字的方案。</span><br><span class="line"></span><br><span class="line">有了这个功能，开发者在写这样的代码时：</span><br><span class="line"></span><br><span class="line">ArrayList&lt;String&gt; myList = new ArrayList&lt;String&gt;()</span><br><span class="line">可以省去前面的类型声明，而只需要</span><br><span class="line"></span><br><span class="line">var list = new ArrayList&lt;String&gt;()</span><br><span class="line">编译器会自动推断出 list 变量的类型。对于链式表达式来说，也会很方便：</span><br><span class="line"></span><br><span class="line">var stream = blocks.stream(); </span><br><span class="line"></span><br><span class="line">... </span><br><span class="line"></span><br><span class="line">int maxWeight = stream.filter(b -&gt; b.getColor() == BLUE)</span><br><span class="line"></span><br><span class="line">                      .mapToInt(Block::getWeight)</span><br><span class="line"></span><br><span class="line">                      .max();</span><br><span class="line">开发者无须声明并且 import 引入 Stream 类型，只用 stream 作为中间变量，用 var 关键字使得开发效率提升。</span><br><span class="line"></span><br><span class="line">不过 var 的使用有众多限制，包括不能用于推断方法参数类型，只能用于局部变量，如方法块中，而不能用于类变量的声明，等等。</span><br><span class="line"></span><br><span class="line">另外，我个人认为，对于开发者而言，变量类型明显的声明会提供更加全面的程序语言信息，对于理解并维护代码有很大的帮助。一旦 var 被广泛运用，开发者阅读三方代码而没有 IDE 的支持下，会对程序的流程执行理解造成一定的障碍。所以我建议尽量写清楚变量类型，程序的易读维护性有时更重要一些。</span><br><span class="line"></span><br><span class="line">2. 统一的 GC 接口</span><br><span class="line"></span><br><span class="line">在 JDK10 的代码中，路径为 openjdk/src/hotspot/share/gc/，各个 GC 实现共享依赖 shared 代码，GC 包括目前默认的 G1，也有经典的 Serial、Parallel、CMS 等 GC 实现。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3. 应用程序类数据（AppCDS）共享</span><br><span class="line"></span><br><span class="line">CDS 特性在原来的 bootstrap 类基础之上，扩展加入了应用类的 CDS(Application Class-Data Sharing) 支持。</span><br><span class="line"></span><br><span class="line">其原理为：在启动时记录加载类的过程，写入到文本文件中，再次启动时直接读取此启动文本并加载。设想如果应用环境没有大的变化，启动速度就会得到提升。</span><br><span class="line"></span><br><span class="line">我们可以想像为类似于操作系统的休眠过程，合上电脑时把当前应用环境写入磁盘，再次使用时就可以快速恢复环境。</span><br><span class="line"></span><br><span class="line">我在自己 PC 电脑上做以下应用启动实验。</span><br><span class="line"></span><br><span class="line">首先部署 wildfly 12 应用服务器，采用 JDK10 预览版作为 Java 环境。另外需要用到一个工具 cl4cds[1]，作用是把加载类的日志记录，转换为 AppCDS 可以识别的格式。</span><br><span class="line"></span><br><span class="line">A、安装好 wildfly 并部署一个应用，具有 Angularjs, rest, jpa 完整应用技术栈，预热后启动三次，并记录完成部署时间</span><br><span class="line"></span><br><span class="line">分别为 6716ms, 6702ms, 6613ms，平均时间为 6677ms。</span><br><span class="line"></span><br><span class="line">B、加入环境变量并启动，导出启动类日志</span><br><span class="line"></span><br><span class="line">export PREPEND_JAVA_OPTS=&quot;-Xlog:class+load=debug:file=/tmp/wildfly.classtrace&quot;</span><br><span class="line">C、使用 cl4cds 工具，生成 AppCDS 可以识别的 cls 格式</span><br><span class="line"></span><br><span class="line">/jdk-10/bin/java -cp src/classes/ io.simonis.cl4cds /tmp/wildfly.classtrace /tmp/wildfly.cls</span><br><span class="line">打开文件可以看到内容为：</span><br><span class="line"></span><br><span class="line">java/lang/Object id: 0x0000000100000eb0</span><br><span class="line"></span><br><span class="line">java/io/Serializable id: 0x0000000100001090</span><br><span class="line"></span><br><span class="line">java/lang/Comparable id: 0x0000000100001268</span><br><span class="line"></span><br><span class="line">java/lang/CharSequence id: 0x0000000100001440</span><br><span class="line"></span><br><span class="line">......</span><br><span class="line"></span><br><span class="line">org/hibernate/type/AssociationType id: 0x0000000100c61208 super: 0x0000000100000eb0 interfaces: 0x0000000100a00d10 source: /home/shihang/work/jboss/wildfly/dist/target/wildfly-12.0.0.Final/modules/system/layers/base/org/hibernate/main/hibernate-core-5.1.10.Final.jar</span><br><span class="line"></span><br><span class="line">org/hibernate/type/AbstractType id: 0x0000000100c613e0 super: 0x0000000100000eb0 interfaces: 0x0000000100a00d10 source: /home/shihang/work/jboss/wildfly/dist/target/wildfly-12.0.0.Final/modules/system/layers/base/org/hibernate/main/hibernate-core-5.1.10.Final.jar</span><br><span class="line"></span><br><span class="line">org/hibernate/type/AnyType id: 0x0000000100c61820 super: 0x0000000100c613e0 interfaces: 0x0000000100c61030 0x0000000100c61208 source: /home/shihang/work/jboss/wildfly/dist/target/wildfly-12.0.0.Final/modules/system/layers/base/org/hibernate/main/hibernate-core-5.1.10.Final.jar</span><br><span class="line"></span><br><span class="line">....</span><br><span class="line">这个文件用于标记类的加载信息。</span><br><span class="line"></span><br><span class="line">D、使用环境变量启动 wildfly，模拟启动过程并导出 jsa 文件，就是记录了启动时类的信息。</span><br><span class="line"></span><br><span class="line">export PREPEND_JAVA_OPTS=&quot;-Xshare:dump -XX:+UseAppCDS -XX:SharedClassListFile=/tmp/wildfly.cls -XX:+UnlockDiagnosticVMOptions -XX:SharedArchiveFile=/tmp/wildfly.jsa&quot;</span><br><span class="line">查看产生的文件信息，jsa 文件有较大的体积。</span><br><span class="line"></span><br><span class="line">/opt/work/cl4cds$ ls -l /tmp/wildfly.*</span><br><span class="line"></span><br><span class="line">-rw-rw-r-- 1 shihang shihang   8413843 Mar 20 11:07 /tmp/wildfly.classtrace</span><br><span class="line"></span><br><span class="line">-rw-rw-r-- 1 shihang shihang   4132654 Mar 20 11:11 /tmp/wildfly.cls</span><br><span class="line"></span><br><span class="line">-r--r--r-- 1 shihang shihang 177659904 Mar 20 11:13 /tmp/wildfly.jsa</span><br><span class="line">E、使用 jsa 文件启动应用服务器</span><br><span class="line"></span><br><span class="line">export PREPEND_JAVA_OPTS=&quot;-Xshare:on -XX:+UseAppCDS -XX:+UnlockDiagnosticVMOptions -XX:SharedArchiveFile=/tmp/wildfly.jsa&quot;</span><br><span class="line">启动完毕后记录时长，三次分别是 5535ms, 5333ms, 5225ms，平均为 5364ms，相比之前的 6677ms 可以算出启动时间提升了 20% 左右。</span><br><span class="line"></span><br><span class="line">这个效率提升，对于云端应用部署很有价值。</span><br><span class="line"></span><br><span class="line">以上实验方法参考于技术博客 [2]。</span><br><span class="line"></span><br><span class="line">4. JEP314，使用附加的 Unicode 语言标记扩展。</span><br><span class="line"></span><br><span class="line">JDK10 对于 Unicode BCP 47 有了更多的支持，BCP 47 是 IETF 定义语言集的规范文档。使用扩展标记，可以更方便的获得所需要的语言地域环境。</span><br><span class="line"></span><br><span class="line">如 JDK10 加入的一个方法，</span><br><span class="line"></span><br><span class="line">java.time.format.DateTimeFormatter::localizedBy</span><br><span class="line">通过这个方法，可以采用某种数字样式，区域定义或者时区来获得时间信息所需的语言地域本地环境信息。</span><br><span class="line"></span><br><span class="line">附：从链接 [3] 可以看到 JDK10 所有的方法级别改动。</span><br><span class="line"></span><br><span class="line">5. 查看当前 JDK 管理根证书。</span><br><span class="line"></span><br><span class="line">自 JDK9 起在 keytool 中加入参数 -cacerts，可以查看当前 JDK 管理的根证书。而 OpenJDK9 中 cacerts 为空，这样就会给开发者带来很多不变。</span><br><span class="line"></span><br><span class="line">EP318 就是利用 Oracle 开源出 Oracle JavaSE 中的 cacerts 信息，在 OpenJDK 中提供一组默认的根证书颁发机构证书，目前有 80 条记录。</span><br><span class="line"></span><br><span class="line">/jdk-10/bin$ ./keytool -list -cacerts</span><br><span class="line"></span><br><span class="line">Enter keystore password:  </span><br><span class="line"></span><br><span class="line">Keystore type: JKS</span><br><span class="line"></span><br><span class="line">Keystore provider: SUN</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Your keystore contains 80 entries</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">verisignclass2g2ca [jdk], Dec 2, 2017, trustedCertEntry, </span><br><span class="line"></span><br><span class="line">Certificate fingerprint (SHA-256): 3A:43:E2:20:FE:7F:3E:A9:65:3D:1E:21:74:2E:AC:2B:75:C2:0F:D8:98:03:05:BC:50:2C:AF:8C:2D:9B:41:A1</span><br><span class="line"></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<h2 id="JDK11"><a href="#JDK11" class="headerlink" title="JDK11"></a>JDK11</h2><p>JDK 11 总共包含 17 个新的 JEP ，分别为：</p>
+<ul>
+<li>181: Nest-Based Access Control（基于嵌套的访问控制）</li>
+<li>309: Dynamic Class-File Constants（动态类文件常量）</li>
+<li>315: Improve Aarch64 Intrinsics（改进 Aarch64 Intrinsics）</li>
+<li>318: Epsilon: A No-Op Garbage Collector（Epsilon — 一个无操作的垃圾收集器）</li>
+<li>320: Remove the Java EE and CORBA Modules（删除 Java EE 和 CORBA 模块）</li>
+<li>321: HTTP Client (Standard)</li>
+<li>323: Local-Variable Syntax for Lambda Parameters（用于 Lambda 参数的局部变量语法）</li>
+<li>324: Key Agreement with Curve25519 and Curve448（Curve25519 和 Curve448 算法的密钥协议）</li>
+<li>327: Unicode 10</li>
+<li>328: Flight Recorder</li>
+<li>329: ChaCha20 and Poly1305 Cryptographic Algorithms（ChaCha20 和 Poly1305 加密算法）</li>
+<li>330: Launch Single-File Source-Code Programs（启动单一文件的源代码程序）</li>
+<li>331: Low-Overhead Heap Profiling（低开销的 Heap Profiling）</li>
+<li>332: Transport Layer Security (TLS) 1.3（支持 TLS 1.3）</li>
+<li>333: ZGC: A Scalable Low-Latency Garbage Collector (Experimental) （可伸缩低延迟垃圾收集器）</li>
+<li>335: Deprecate the Nashorn JavaScript Engine（弃用 Nashorn JavaScript 引擎）</li>
+<li>336: Deprecate the Pack200 Tools and API （弃用 Pack200 工具和 API）</li>
+</ul>
+<p>支持Unicode 10.0,在jdk10中是8.0。<br>标准化HTTP Client<br>编译器线程的延迟分配。添加了新的命令-XX:+UseDynamicNumberOfCompilerThreads动态控制编译器线程的数量。<br>新的垃圾收集器—ZGC。一种可伸缩的低延迟垃圾收集器(实验性)。<br>Epsilon。一款新的实验性无操作垃圾收集器。Epsilon GC 只负责内存分配，不实现任何内存回收机制。这对于性能测试非常有用，可用于与其他GC对比成本和收益。<br>Lambda参数的局部变量语法。java10中引入的var字段得到了增强，现在可以用在lambda表达式的声明中。如果lambda表达式的其中一个形式参数使用了var，那所有的参数都必须使用var。</p>
+<h2 id="JDK12"><a href="#JDK12" class="headerlink" title="JDK12"></a>JDK12</h2><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>1.<a href="https://www.jianshu.com/p/31433bcaa1a5" target="_blank" rel="noopener">JDK 版本变化</a><br>2.<a href="https://www.cnblogs.com/IcanFixIt/p/7131676.html" target="_blank" rel="noopener">Java 9 揭秘</a></p>
+
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JDK/" rel="tag"># JDK</a>
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/23/Hexo个性化next主题/" rel="next" title="Hexo(五)：个性化 next theme">
+                <i class="fa fa-chevron-left"></i> Hexo(五)：个性化 next theme
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/23/Hexo集成第三方服务/" rel="prev" title="Hexo(七)：第三方服务">
+                Hexo(七)：第三方服务 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div id="gitalk-container"></div>
+
+  
+
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/10276571?v=4&u=7451747ef9367ae19748898baa555d3af216e3e4&s=400" alt="执行者">
+            
+              <p class="site-author-name" itemprop="name">执行者</p>
+              <p class="site-description motion-element" itemprop="description">活出自我</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/victoryofymk" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:starlord.yan@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更新记录"><span class="nav-number">1.1.</span> <span class="nav-text">更新记录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些术语"><span class="nav-number">2.</span> <span class="nav-text">一些术语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK6"><span class="nav-number">3.</span> <span class="nav-text">JDK6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK7"><span class="nav-number">4.</span> <span class="nav-text">JDK7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK8"><span class="nav-number">5.</span> <span class="nav-text">JDK8</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Lambda-表达式"><span class="nav-number">5.1.</span> <span class="nav-text">1.Lambda 表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#语法"><span class="nav-number">5.1.1.</span> <span class="nav-text">语法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-方法引用"><span class="nav-number">5.2.</span> <span class="nav-text">2.方法引用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#语法-1"><span class="nav-number">5.2.1.</span> <span class="nav-text">语法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数式接口"><span class="nav-number">5.3.</span> <span class="nav-text">函数式接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#默认方法"><span class="nav-number">5.4.</span> <span class="nav-text">默认方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#语法-2"><span class="nav-number">5.4.1.</span> <span class="nav-text">语法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stream"><span class="nav-number">5.5.</span> <span class="nav-text">Stream</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是-Stream？"><span class="nav-number">5.5.1.</span> <span class="nav-text">什么是 Stream？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成流"><span class="nav-number">5.5.2.</span> <span class="nav-text">生成流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#forEach"><span class="nav-number">5.5.3.</span> <span class="nav-text">forEach</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#map"><span class="nav-number">5.5.4.</span> <span class="nav-text">map</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#filter"><span class="nav-number">5.5.5.</span> <span class="nav-text">filter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#limit"><span class="nav-number">5.5.6.</span> <span class="nav-text">limit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sorted"><span class="nav-number">5.5.7.</span> <span class="nav-text">sorted</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并行（parallel）程序"><span class="nav-number">5.5.8.</span> <span class="nav-text">并行（parallel）程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Collectors"><span class="nav-number">5.5.9.</span> <span class="nav-text">Collectors</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#统计"><span class="nav-number">5.5.10.</span> <span class="nav-text">统计</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Optional-类"><span class="nav-number">5.6.</span> <span class="nav-text">Optional 类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nashorn-JavaScript"><span class="nav-number">5.7.</span> <span class="nav-text">Nashorn JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日期时间-API"><span class="nav-number">5.8.</span> <span class="nav-text">日期时间 API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Base64"><span class="nav-number">5.9.</span> <span class="nav-text">Base64</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK9"><span class="nav-number">6.</span> <span class="nav-text">JDK9</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK10"><span class="nav-number">7.</span> <span class="nav-text">JDK10</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK11"><span class="nav-number">8.</span> <span class="nav-text">JDK11</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK12"><span class="nav-number">9.</span> <span class="nav-text">JDK12</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">10.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">执行者</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">88k</span>
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="//cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '7e1234a09bee8c6a4e55',
+          clientSecret: 'cfc9d0cc058a60cc57853ca464dfd1c1ec536c9f',
+          repo: 'victoryofymk.github.io',
+          owner: 'victoryofymk',
+          admin: ['victoryofymk'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')
+       </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "vspD7JFRjoCH2TYrY55X1vYM-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "vspD7JFRjoCH2TYrY55X1vYM-gzGzoHsz",
+                'X-LC-Key': "QfFBSnzthsnAhekmGoXJcJR7",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
