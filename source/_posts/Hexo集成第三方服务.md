@@ -9,14 +9,19 @@ tags:
 ---
 
 ## 评论系统
+为hexo增加评论功能
 
 ### 添加disqus评论
-由于以前国内使用较多的多说评论下架了，所以选用了国外较为稳定的disqus，但使用该评论功能需要“科学上网”！
+使用该评论功能需要“科学上网”。
 
-	• 注册disqus账号https://disqus.com
-	• 在disqus设置页面中点 Add Disqus to your site 添加你的网站地址(即为https://yourname.github.io), 和设置Choose your unique Disqus URL, 你所填写的unique Disqus URL即为hexo配置文件中需要修改的short_name字段。
-	• 打开hexo/themes/next/_config.yml主题配置文件，修改下面字段：
+1.注册disqus账号https://disqus.com
+
+2.在disqus设置页面中点 Add Disqus to your site 添加你的网站地址(即为https://yourname.github.io), 和设置Choose your unique Disqus URL, 你所填写的unique Disqus URL即为hexo配置文件中需要修改的short_name字段。
 	
+
+3.评论预审核可以不填写
+4.第一次需要验证邮箱
+5.打开hexo/themes/next/_config.yml主题配置文件，修改下面字段：	
 ```
 #Disqus
 disqus:
@@ -48,6 +53,7 @@ valine:
   visitor: false # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html
 
 ```
+appid,appkey 填写leancloud的应用注册后提供的即可，参考另一篇博客或者站内搜索
 
 ### 添加Gitment
 基于github的issue实现的,不再维护
@@ -81,7 +87,9 @@ gitalk:
   md5: //cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js
 ```
 
-gitalk.swig如果已经配置css和js可以省略，md5加密ID可以解决gitbub对Issue label长度最多50的限制
+gitalk.swig如果已经配置css和js可以省略，md5加密ID可以解决gitbub对Issue label长度最多50的限制。
+
+另外可以参考next对于gitment等其他评论插件的集成。
 
 #### 配置主题方法一
 找到NexT的主题目录，然后进入这个路径/next/layout/_custom/下，应该有head.swig，header.swig，sidebar.swig这三个文件。
